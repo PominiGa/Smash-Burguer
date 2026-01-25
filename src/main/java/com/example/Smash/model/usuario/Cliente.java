@@ -1,4 +1,4 @@
-package com.example.Smash.model.cliente;
+package com.example.Smash.model.usuario;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

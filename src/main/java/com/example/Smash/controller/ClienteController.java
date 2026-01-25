@@ -1,7 +1,7 @@
 package com.example.Smash.controller;
 
 import com.example.Smash.dto.AtualizarSenhaDTO;
-import com.example.Smash.model.cliente.Cliente;
+import com.example.Smash.model.usuario.Cliente;
 import com.example.Smash.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

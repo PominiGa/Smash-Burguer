@@ -1,6 +1,6 @@
 package com.example.Smash.service;
 
-import com.example.Smash.model.cliente.Cliente;
+import com.example.Smash.model.usuario.Cliente;
 import com.example.Smash.repository.ClienteRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

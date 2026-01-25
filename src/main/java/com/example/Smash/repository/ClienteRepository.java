@@ -1,6 +1,6 @@
 package com.example.Smash.repository;
 
-import com.example.Smash.model.cliente.Cliente;
+import com.example.Smash.model.usuario.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
