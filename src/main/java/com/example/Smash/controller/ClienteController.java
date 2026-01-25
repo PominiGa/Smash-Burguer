@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(name = "/clientes")
@@ -22,7 +23,7 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Cliente> listarCliente(@PathVariable long id) {
+    public Optional<Cliente> listarCliente(@PathVariable UUID id) {
         return clienteService.listarPorId(id);
     }
 
@@ -32,7 +33,7 @@ public class ClienteController {
     }
 
     @PutMapping("/{id}")
-    public Cliente atualizar(@PathVariable long id, @RequestBody Cliente cliente) {
+    public Cliente atualizar(@PathVariable UUID id, @RequestBody Cliente cliente) {
         return clienteService.atualizarPorId(id, cliente);
     }
 
@@ -47,7 +48,7 @@ public class ClienteController {
 
 
     @DeleteMapping("/{id}")
-    public void deletar(@PathVariable long id) {
+    public void deletar(@PathVariable UUID id) {
         clienteService.deletarPorId(id);
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ClienteService {
@@ -18,7 +19,7 @@ public class ClienteService {
         return repository.findAll();
     }
 
-    public Optional<Cliente> listarPorId(long id) {
+    public Optional<Cliente> listarPorId(UUID id) {
         if (repository.existsById(id)) {
             return repository.findById(id);
         } else {
@@ -30,7 +31,7 @@ public class ClienteService {
         return repository.save(cliente);
     }
 
-    public Cliente atualizarPorId(long id, Cliente cliente) {
+    public Cliente atualizarPorId(UUID id, Cliente cliente) {
         if (repository.existsById(id)) {
             cliente.setId(id);
             return repository.save(cliente);
@@ -39,7 +40,7 @@ public class ClienteService {
         }
     }
 
-    public void deletarPorId(long id) {
+    public void deletarPorId(UUID id) {
         repository.deleteById(id);
     }
 
@@ -53,7 +54,7 @@ public class ClienteService {
 
 
 
-    public Optional<Cliente> findById(long id) {
+    public Optional<Cliente> findById(UUID id) {
         return repository.findById(id);
     }
 }
