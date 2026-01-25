@@ -1,5 +1,6 @@
 package com.example.Smash.model.cliente;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,4 +31,7 @@ public class Cliente {
 
     @Column(unique = true)
     private String telefone;
+
+    @JsonIgnore
+    private String senha;
 }

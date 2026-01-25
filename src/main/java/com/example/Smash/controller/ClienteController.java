@@ -1,11 +1,14 @@
 package com.example.Smash.controller;
 
+import com.example.Smash.dto.AtualizarSenhaDTO;
 import com.example.Smash.model.cliente.Cliente;
 import com.example.Smash.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(name = "/clientes")
@@ -18,6 +21,11 @@ public class ClienteController {
         return clienteService.listarTodos();
     }
 
+    @GetMapping("/{id}")
+    public Optional<Cliente> listarCliente(@PathVariable long id) {
+        return clienteService.listarPorId(id);
+    }
+
     @PostMapping
     public Cliente salvar(@RequestBody Cliente cliente) {
         return clienteService.criarCliente(cliente);
@@ -27,6 +35,16 @@ public class ClienteController {
     public Cliente atualizar(@PathVariable long id, @RequestBody Cliente cliente) {
         return clienteService.atualizarPorId(id, cliente);
     }
+
+    @PutMapping("/senha/{email}")
+    public ResponseEntity<Void> atualizarSenha(
+            @PathVariable String email,
+            @RequestBody AtualizarSenhaDTO dto) {
+
+        clienteService.atualizarSenhaPorEmail(email, dto.getSenha());
+        return ResponseEntity.noContent().build();
+    }
+
 
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable long id) {
