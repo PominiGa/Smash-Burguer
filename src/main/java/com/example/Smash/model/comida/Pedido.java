@@ -1,0 +1,38 @@
+package com.example.Smash.model.comida;
+
+import com.example.Smash.model.usuario.Cliente;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Entity
+@Table(name = "pedidos")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Pedido {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private LocalDateTime dataPedido;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+
+    @ManyToMany
+    @JoinTable(
+            name = "pedido_comidas",
+            joinColumns = @JoinColumn(name = "pedido_id"),
+            inverseJoinColumns = @JoinColumn(name = "comida_id")
+    )
+    private List<Comida> comidas;
+}
+

@@ -19,4 +19,5 @@ public class Comida {
     private String nome;
     private double valor;
     private String descricao;
+    private int quantidade;
 }

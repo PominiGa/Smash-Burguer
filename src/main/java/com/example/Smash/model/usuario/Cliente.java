@@ -1,5 +1,6 @@
 package com.example.Smash.model.usuario;
 
+import com.example.Smash.model.comida.Pedido;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.persistence.Entity;
@@ -9,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -35,6 +37,9 @@ public class Cliente {
 
     @Column(unique = true)
     private String telefone;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Pedido> pedidos;
 
     @JsonIgnore
     private String senha;
