@@ -2,6 +2,7 @@ package com.example.Smash.service;
 
 import com.example.Smash.model.comida.Comida;
 import com.example.Smash.model.comida.Pedido;
+import com.example.Smash.model.comida.StatusPagamento;
 import com.example.Smash.model.usuario.Cliente;
 import com.example.Smash.repository.ClienteRepository;
 import com.example.Smash.repository.ComidaRepository;
@@ -40,6 +41,23 @@ public class PedidoService {
         pedido.setComidas(comidas);
 
         return pedidoRepository.save(pedido);
+    }
+
+    public Pedido pagarPedido(Long pedidoId) {
+        Pedido pedido = pedidoRepository.findById(pedidoId).orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
+
+        if (pedido.getStatusPagamento() == StatusPagamento.PAGO) {
+            throw new RuntimeException("Pedido ja foi pago");
+        }
+
+        pedido.setStatusPagamento(StatusPagamento.PAGO);
+        return pedidoRepository.save(pedido);
+    }
+
+    public void validarPedidoPago(Pedido pedido) {
+        if (pedido.getStatusPagamento() != StatusPagamento.PAGO) {
+            throw new RuntimeException("Pedido não está pago");
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 package com.example.Smash.model.comida;
 
 import com.example.Smash.model.usuario.Cliente;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +26,9 @@ public class Pedido {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
+    @JsonIgnoreProperties("pedidos")
     private Cliente cliente;
+
 
     @ManyToMany
     @JoinTable(
@@ -34,5 +37,10 @@ public class Pedido {
             inverseJoinColumns = @JoinColumn(name = "comida_id")
     )
     private List<Comida> comidas;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private StatusPagamento statusPagamento = StatusPagamento.PENDENTE;
+
 }
 
