@@ -2,7 +2,7 @@ package com.example.Smash.service;
 
 import com.example.Smash.model.comida.Comida;
 import com.example.Smash.model.comida.Pedido;
-import com.example.Smash.model.comida.StatusPagamento;
+import com.example.Smash.model.pagamento.StatusPagamento;
 import com.example.Smash.model.usuario.Cliente;
 import com.example.Smash.repository.ClienteRepository;
 import com.example.Smash.repository.ComidaRepository;

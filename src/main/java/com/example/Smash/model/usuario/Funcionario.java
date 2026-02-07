@@ -21,6 +21,8 @@ public class Funcionario {
 
     @Column(unique = true)
     private String documento;
+
+    @Column(nullable = false)
     private String primeiroNome;
     private String segundoNome;
     private BigDecimal salario;

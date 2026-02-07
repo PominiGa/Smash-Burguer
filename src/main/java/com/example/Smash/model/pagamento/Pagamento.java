@@ -1,5 +1,6 @@
-package com.example.Smash.model.comida;
+package com.example.Smash.model.pagamento;
 
+import com.example.Smash.model.comida.Pedido;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

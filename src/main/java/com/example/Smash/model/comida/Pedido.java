@@ -1,5 +1,6 @@
 package com.example.Smash.model.comida;
 
+import com.example.Smash.model.pagamento.StatusPagamento;
 import com.example.Smash.model.usuario.Cliente;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;

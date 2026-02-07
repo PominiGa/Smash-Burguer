@@ -1,4 +1,4 @@
-package com.example.Smash.model.comida;
+package com.example.Smash.model.pagamento;
 
 public enum StatusPagamento {
     PENDENTE,
