@@ -3,52 +3,66 @@ package com.example.Smash.controller;
 import com.example.Smash.dto.AtualizarSenhaDTO;
 import com.example.Smash.model.usuario.Cliente;
 import com.example.Smash.service.ClienteService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(name = "/clientes")
+@RequestMapping("/clientes")
 public class ClienteController {
-    @Autowired
-    public ClienteService clienteService;
+
+    private final ClienteService clienteService;
+
+    public ClienteController(ClienteService clienteService) {
+        this.clienteService = clienteService;
+    }
 
     @GetMapping
-    public List<Cliente> getAll() {
-        return clienteService.listarTodos();
+    public ResponseEntity<List<Cliente>> listarTodos() {
+        return ResponseEntity.ok(clienteService.listarTodos());
     }
 
     @GetMapping("/{id}")
-    public Optional<Cliente> listarCliente(@PathVariable UUID id) {
-        return clienteService.listarPorId(id);
+    public ResponseEntity<Cliente> buscarPorId(@PathVariable UUID id) {
+        return ResponseEntity.ok(clienteService.buscarPorId(id));
     }
 
     @PostMapping
-    public Cliente salvar(@RequestBody Cliente cliente) {
-        return clienteService.criarCliente(cliente);
+    public ResponseEntity<Cliente> criar(@RequestBody Cliente cliente) {
+
+        Cliente criado = clienteService.criarCliente(cliente);
+
+        URI location = URI.create("/clientes/" + criado.getId());
+
+        return ResponseEntity.created(location).body(criado);
     }
 
     @PutMapping("/{id}")
-    public Cliente atualizar(@PathVariable UUID id, @RequestBody Cliente cliente) {
-        return clienteService.atualizarPorId(id, cliente);
+    public ResponseEntity<Cliente> atualizar(
+            @PathVariable UUID id,
+            @RequestBody Cliente cliente) {
+
+        return ResponseEntity.ok(clienteService.atualizarPorId(id, cliente));
     }
 
-    @PutMapping("/senha/{email}")
+    @PutMapping("/{email}/senha")
     public ResponseEntity<Void> atualizarSenha(
             @PathVariable String email,
             @RequestBody AtualizarSenhaDTO dto) {
 
         clienteService.atualizarSenhaPorEmail(email, dto.getSenha());
+
         return ResponseEntity.noContent().build();
     }
 
-
     @DeleteMapping("/{id}")
-    public void deletar(@PathVariable UUID id) {
+    public ResponseEntity<Void> deletar(@PathVariable UUID id) {
+
         clienteService.deletarPorId(id);
+
+        return ResponseEntity.noContent().build();
     }
 }
