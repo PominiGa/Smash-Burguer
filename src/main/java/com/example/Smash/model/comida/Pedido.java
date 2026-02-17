@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -30,6 +31,8 @@ public class Pedido {
     @JsonIgnoreProperties("pedidos")
     private Cliente cliente;
 
+    @Column(nullable = false)
+    private BigDecimal valorTotal;
 
     @ManyToMany
     @JoinTable(
