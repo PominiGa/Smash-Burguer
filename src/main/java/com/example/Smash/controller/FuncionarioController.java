@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/funcionarios")
+@CrossOrigin(origins = "http://localhost:5173")
 public class FuncionarioController {
 
     private final FuncionarioService funcionarioService;

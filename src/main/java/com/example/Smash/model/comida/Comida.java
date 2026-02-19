@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "comidas")
 @Getter
@@ -17,7 +19,7 @@ public class Comida {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
-    private double valor;
+    private BigDecimal valor;
     private String descricao;
     private int quantidade;
 }
